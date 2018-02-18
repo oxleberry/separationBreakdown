@@ -6,6 +6,7 @@ h1 {
     font-family: "Futura", sans-serif;
     margin-bottom: 25px;
     color: #70665f;
+    margin-top: 40px;
 }
 .wrap {
     margin: 0px auto;
@@ -17,6 +18,7 @@ h1 {
     -webkit-box-shadow: 0px 40px 60px -20px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 40px 60px -20px rgba(0, 0, 0, 0.3);
 }
+
 .screenprint .inkGroup, 
 .screenprint .printGroup, 
 .screenprint .bitmapGroup, 
@@ -59,55 +61,63 @@ button.ink:hover {
     background: rgba(255, 255, 255, 1);
 }
 
-
+/*MEDIA QUERIES*/
 @media (min-width: 800px){
     .inkText {
         color: black;
         font-weight: bold;
         font-size: 12px
     }
-    .ir {
+    .pReset, .bReset {
         background: rgba(255, 255, 255, 0.2);
         color: white;
         font-size: 12px;
     }   
+    .bitmapGroup {
+        border: 2px solid #474747;
+        height: 500px;
+    }    
 }
 @media (max-width: 799px){
     .inkText {
         font-size: 0px;
     }
-    .ir {
+    .pReset, .bReset {
         background: rgba(255, 255, 255, 0.2);
         font-size: 0px;
     }
+    .bitmapGroup {
+        border: 2px solid #474747;
+        height: 280px;
+    }    
 }
 
 
 /* PRINTS*/
 .p1 {
-    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p1.png)
-        center no-repeat;
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p1.png);
     opacity: 0.7;
 }
 .p2 {
-    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p2.png)
-        center no-repeat;
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p2.png);
     opacity: 1;
 }
 .p3 {
-    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p3.png)
-        center no-repeat;
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p3.png);
     opacity: 1;
 }
 .p4 {
-    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p4.png)
-        center no-repeat;
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p4.png);
     opacity: 1;
 }
 .p5 {
-    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p5.png)
-        center no-repeat;
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p5.png);
     opacity: 1;
+}
+.p1, .p2, .p3, .p4, .p5 {
+    background-repeat: no-repeat;
+    background-position: 15%;
+    /*ADJUSTS THE PLACEMENT*/
 }
 .pBefore,
 .pAfter {
@@ -124,6 +134,53 @@ button.ink:hover {
     height: 100%;
     width: 100%;
     background-size: 500px;
+}
+.printGroup {
+    border: 2px solid #474747;
+}
+
+/*BITMAP*/
+.b1 {   
+    background: url(images/bit1.png); 
+    opacity: 0.7;
+}
+.b2 {
+    background: url(images/bit2.png);
+    opacity: 1; 
+}
+.b3 {
+    background: url(images/bit3.png); 
+    opacity: 1;
+}
+.b4 {
+    background: url(images/bit4.png); 
+    opacity: 1;
+}
+.b5 {
+    background: url(images/bit5.png); 
+    opacity: 1;
+}
+.b0, .b1, .b2, .b3, .b4, .b5 {
+    background-size: 265%;
+    background-repeat: no-repeat;
+    background-position: 60% 29%;
+    /*ADJUSTS THE PLACEMENT*/
+}
+.bBefore, .bAfter {
+    position: relative;
+    width: 50%;
+    margin: 5px;
+    padding: 5px; 
+}
+.bBefore{
+    z-index: 8;
+}
+.bitmap {
+    left: 0%;
+    top: 0%;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 /* ANIMATION */
