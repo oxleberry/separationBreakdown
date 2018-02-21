@@ -114,7 +114,11 @@ button.ink:hover {
     background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p5.png);
     opacity: 1;
 }
-.p1, .p2, .p3, .p4, .p5 {
+.pAll {
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p0.png);
+    opacity: 1;
+}
+.p1, .p2, .p3, .p4, .p5, .pAll {
     background-repeat: no-repeat;
     background-position: 15%;
     /*ADJUSTS THE PLACEMENT*/
@@ -160,7 +164,11 @@ button.ink:hover {
     background: url(images/bit5.png); 
     opacity: 1;
 }
-.b0, .b1, .b2, .b3, .b4, .b5 {
+.bAll {   
+    background: url(images/bitAll.png); 
+    opacity: 1;
+}
+.b0, .b1, .b2, .b3, .b4, .b5, .bAll {
     background-size: 265%;
     background-repeat: no-repeat;
     background-position: 60% 29%;
@@ -185,50 +193,24 @@ button.ink:hover {
 
 /* ANIMATION */
 .slideRT {
-    -webkit-animation: slideRT 1.5s ease-in-out 1 forwards;
-                    animation: slideRT 1.5s ease-in-out 1 forwards;
+            animation: slideRT 1.5s ease-in-out 1 forwards;
 }
 .slideLT {
-    -webkit-animation: slideLT 1.5s ease-in-out 1 forwards;
-                    animation: slideLT 1.5s ease-in-out 1 forwards;
-}
-@-webkit-keyframes slideRT {
-    0% {
-        -webkit-transform: translateX(0px);
-                        transform: translateX(0px);
-    }
-    100% {
-        -webkit-transform: translateX(102%);
-                        transform: translateX(102%);
-    }
-}
-@-webkit-keyframes slideLT {
-    0% {
-        -webkit-transform: translateX(102%);
-                        transform: translateX(102%);
-    }
-    100% {
-        -webkit-transform: translateX(0px);
-                        transform: translateX(0px);
-    }
+            animation: slideLT 1.5s ease-in-out 1 forwards;
 }
 @keyframes slideRT {
     0% {
-        -webkit-transform: translateX(0px);
-                        transform: translateX(0px);
+        transform: translateX(0px);
     }
     100% {
-        -webkit-transform: translateX(102%);
-                        transform: translateX(102%);
+        transform: translateX(102%);
     }
 }
 @keyframes slideLT {
     0% {
-        -webkit-transform: translateX(102%);
-                        transform: translateX(102%);
+        transform: translateX(102%);
     }
     100% {
-        -webkit-transform: translateX(0px);
-                        transform: translateX(0px);
+        transform: translateX(0px);
     }
 }
