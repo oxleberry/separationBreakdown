@@ -8,9 +8,10 @@ $(document).ready(function() {
         printOrder(x);        
     });
  
-    $("button.pReset").on("click", resetPrint);
- 
-
+    $("button.reset").on("click", function() {
+        var x = $(this).attr("id");
+        reset(x);        
+    });
     // $(".pBefore").on("click", resetPrint);
     // $("button.bReset").on("click", resetPrint);    
     // $("button.bReset").on("click", resetBitmap);    
@@ -94,28 +95,35 @@ function printOrder(sepColor) {
 // }
 
 // RESET IMAGES
-function resetPrint() {
-    $(".print").each(function(){
+function reset(section) {
+
+    $("." + section).each(function(){
         if ($(this).hasClass("slideRT")) {
             $(this).toggleClass("slideRT");
             $(this).toggleClass("slideLT");
-                    console.log("click");
-            delayClearOrder()
+            // console.log("click");
+            delayClearOrder(section);
         }
     });
 }
 
-function delayClearOrder(){ 
+function delayClearOrder(resetDesign){ 
     // console.log ("STILL");
     setTimeout(function () { 
-        clearOrder(); 
+        clearOrder(resetDesign); 
     }, 1510);
 }
-function clearOrder() {
-    $(".print").each(function(){
+
+function clearOrder(resetDesign) {      
+    var firstLetter = resetDesign.charAt(0);
+
+            console.log(resetDesign);
+        console.log(firstLetter);  
+    $("." + resetDesign).each(function(){
         for (var i = 1; i < screenCount; i++) {
-            $(this).removeClass("p" + i); 
-            console.log("p" + i);           
+            var x = firstLetter + i
+            $(this).removeClass(firstLetter + i); 
+            // console.log("p" + i);           
         }
     });
 }
@@ -126,6 +134,7 @@ function clearOrder() {
 //         if ($(this).hasClass("slideRT")) {
 //             $(this).toggleClass("slideRT");
 //             $(this).toggleClass("slideLT");
+//             delayClearOrder();
 //         }
 //     });
 // }
