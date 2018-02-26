@@ -68,7 +68,7 @@ button.ink:hover {
         font-weight: bold;
         font-size: 12px
     }
-    .pReset, .bReset {
+    .reset {
         background: rgba(255, 255, 255, 0.2);
         color: white;
         font-size: 12px;
@@ -82,7 +82,7 @@ button.ink:hover {
     .inkText {
         font-size: 0px;
     }
-    .pReset, .bReset {
+    .reset {
         background: rgba(255, 255, 255, 0.2);
         font-size: 0px;
     }
