@@ -45,6 +45,9 @@ button:focus {
 button.ink:hover {
     opacity: 0.6;
 }
+button.ink.active {
+    opacity: 0.6;
+}
 .i1 {
     background: rgba(255, 255, 255, 0.7);
 }
