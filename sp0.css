@@ -21,9 +21,7 @@ h1 {
 
 .screenprint .inkGroup, 
 .screenprint .printGroup, 
-.screenprint .bitmapGroup, 
-.screenprint .artGroup, 
-.screenprint .teeGroup {
+.screenprint .bitmapGroup {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -38,15 +36,18 @@ button {
     border-radius: 6px;
     width: 10%;
     height: 40px;
+    margin-bottom: 5px;
 }
 button:focus {
     outline: none;
 }
 button.ink:hover {
+/*    transform: translateY(-2px);*/
     opacity: 0.6;
 }
 button.ink.active {
     opacity: 0.6;
+    transform: translateY(2px);   
 }
 .i1 {
     background: rgba(255, 255, 255, 0.7);
@@ -69,7 +70,7 @@ button.ink.active {
     .inkText {
         color: black;
         font-weight: bold;
-        font-size: 12px
+        font-size: 0.75rem;
     }
     .reset {
         background: rgba(255, 255, 255, 0.2);
@@ -83,11 +84,14 @@ button.ink.active {
 }
 @media (max-width: 799px){
     .inkText {
-        font-size: 0px;
+        font-size: 0rem;
     }
     .reset {
         background: rgba(255, 255, 255, 0.2);
-        font-size: 0px;
+/*        font-size: 0px;*/
+        color: white;
+        font-weight: lighter;
+        font-size: 0.3rem;       
     }
     .bitmapGroup {
         border: 2px solid #474747;
@@ -118,7 +122,7 @@ button.ink.active {
     opacity: 1;
 }
 .pAll {
-    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/p0.png);
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/pAll.png);
     opacity: 1;
 }
 .p1, .p2, .p3, .p4, .p5, .pAll {
@@ -148,27 +152,27 @@ button.ink.active {
 
 /*BITMAP*/
 .b1 {   
-    background: url(images/bit1.png); 
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/bit1.png); 
     opacity: 0.7;
 }
 .b2 {
-    background: url(images/bit2.png);
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/bit2.png);
     opacity: 1; 
 }
 .b3 {
-    background: url(images/bit3.png); 
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/bit3.png); 
     opacity: 1;
 }
 .b4 {
-    background: url(images/bit4.png); 
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/bit4.png); 
     opacity: 1;
 }
 .b5 {
-    background: url(images/bit5.png); 
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/bit5.png); 
     opacity: 1;
 }
 .bAll {   
-    background: url(images/bitAll.png); 
+    background: url(http://www.oxleberry.com/interactive/screenprints/hrb/images/bitAll.png); 
     opacity: 1;
 }
 .b0, .b1, .b2, .b3, .b4, .b5, .bAll {
