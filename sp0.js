@@ -1,5 +1,4 @@
 
-var screenCount = 5 + 1;
 
 $(document).ready(function() {
     
@@ -7,134 +6,120 @@ $(document).ready(function() {
     $("button.inkText").on("click", function() {
         var x = $(this).attr("id");
         repeatCheck(x);
-        // printOrder(x);
-
     });
  
     // RESET BUTTON
-    $("button.reset").on("click", function() {
-        var x = $(this).attr("id");
-        reset(x);        
-    });
+    $("button.reset").on("click", reset);
 
 });
 
+// Determines the screencount based of the number of ink buttons 
+function buttonCount() {
 
+    var buttonsTotal = document.getElementsByTagName("button").length;
+    // total buttons / 2 sections (print & bitmap) - 1 resetbutton
+    screenCount = (buttonsTotal / 2) - 1
+    // add one because the screen count starts at 1 not 0;
+    screenCount += 1;
+    return screenCount;
+}
+var screenCount = buttonCount();
+
+
+// Check to see if the ink color has already been used, then activates accordingly
+var doneArray = [];
+function repeatCheck(sepColor) {
+ 
+    var num = sepColor.charAt(1); 
+    if (doneArray.length == 0){
+        doneArray.push(num);  
+        // console.log("FIRST");  
+        printOrder(num); 
+        $("button.ink.i" + num).addClass("active");
+    }
+    else if (doneArray.includes(num)){
+        // console.log("REPEAT");
+    } 
+    else  {
+        doneArray.push(num);
+        // console.log("array = " + doneArray);
+        printOrder(num);
+        $("button.ink.i" + num).addClass("active");
+    }
+}
 
 // to determine which ORDER placement the selected ink color should be
-function nextOrder(next) {
-    var pb = peeOrBee(next);
-    // var num = sepColor.charAt(1);
-    // var test = sepColor;
+function nextOrder() {
+
     for (var i = 1; i < screenCount; i++) {
-        if (!$(".order_"+ pb + i).hasClass("slideRT")) {
-            var order = ".order_"+ pb + i;
-            return order;
+        if (!$(".order_p" + i).hasClass("slideRT")) {
+            return(i);
         } 
     }
 }
-// determines if we are in the "p" or "b" section
-function peeOrBee(pb) {
-    var firstLetter = pb.charAt(0);   
-    return firstLetter;
-}
 
-var doneArray = [];
+// ATTACHES IMAGES to the next order in line and slides both the 
+// print and bitmap images over to the right
+function printOrder(inkNum) {
 
-
-// Check to see if the color has already been used
-function repeatCheck(sepColor) {
-    var num = sepColor.charAt(1); 
-    if (doneArray.length == 0){
-        doneArray.push(sepColor);  
-        console.log("FIRST");  
-        printOrder(sepColor); 
-        $("button.ink.i" + num).addClass("active");
-    }
-    else if (doneArray.includes(sepColor)){
-        console.log("REPEAT");
-        // for (var i = 0; i < doneArray.length; i++) {
-        //     if (sepColor == doneArray[i]) {
-        //         console.log("REPEAT");
-        //         break;
-    } 
-    else  {
-        doneArray.push(sepColor);
-        console.log(doneArray);
-        printOrder(sepColor);
-        $("button.ink.i" + num).addClass("active");
-    }
-
-}
-
-
-// ATTACHES IMAGES to the next order in line and slides the image over to the right
-function printOrder(sepColor) {
-
-    var thisOrder = nextOrder(sepColor);
-
-     // • Check to see if the color has already been used
-    // var doneArray = [];
-    // for (var i = 0; i < doneArray.length; i++) {
-    //     if (sepColor == doneArray[i]) {
-    //         console.log("REPEAT");
-    //         return;
-    //     } 
-    //     else  {
-    //         doneArray.push(sepColor);
-    //         console.log(doneArray);
-    //     }
-    // }
-
-    $(thisOrder).addClass(sepColor);
+    var orderNum = nextOrder();
+    // console.log("order " + orderNum);
+    // console.log("ink num " + inkNum); 
+    $(".order_p" + orderNum).addClass("p" + inkNum);
+    $(".order_b" + orderNum).addClass("b" + inkNum);
 
     // TOGGLING LOGIC
-    if ($(thisOrder).hasClass("slideRT")) {
-        $(thisOrder).toggleClass("slideRT");
-        $(thisOrder).toggleClass("slideLT");
-    } 
-    else if ($(thisOrder).hasClass("slideLT")) {
-        $(thisOrder).toggleClass("slideRT");
-        $(thisOrder).toggleClass("slideLT");
+    if ($(".order_p" + orderNum).hasClass("slideLT")) {
+        $(".order_p" + orderNum).toggleClass("slideRT");
+        $(".order_b" + orderNum).toggleClass("slideRT");
+        $(".order_p" + orderNum).toggleClass("slideLT");        
+        $(".order_b" + orderNum).toggleClass("slideLT");
     } 
     else {
-        $(thisOrder).toggleClass("slideRT");
+        $(".order_p" + orderNum).toggleClass("slideRT");
+        $(".order_b" + orderNum).toggleClass("slideRT");
     }
-
 }
 
 // RESET IMAGES
-function reset(section) {
+function reset() {
 
-    $("." + section).each(function(){
+    $(".print").each(function(){
         if ($(this).hasClass("slideRT")) {
             $(this).toggleClass("slideRT");
             $(this).toggleClass("slideLT");
-            delayClearOrder(section);
         }
     });
+    $(".bitmap").each(function(){
+        if ($(this).hasClass("slideRT")) {
+            $(this).toggleClass("slideRT");
+            $(this).toggleClass("slideLT");
+        }
+    });
+    delayClearOrder();
 }
 
-function delayClearOrder(section){ 
+function delayClearOrder(){ 
+
     setTimeout(function () { 
-        clearOrder(section); 
+        clearOrder(); 
     }, 1510);
 }
 
-function clearOrder(section) {      
-    var firstLetter = section.charAt(0);
-        // console.log(resetDesign);
-        // console.log(firstLetter);  
-    $("." + section).each(function(){
+function clearOrder() {      
+
+    $(".print").each(function(){
         for (var i = 1; i < screenCount; i++) {
-            var x = firstLetter + i;
-            $(this).removeClass(firstLetter + i); 
-            // console.log("p" + i);           
+            $(this).removeClass("p" + i);         
         }
     });
-    if ($("button.ink").addClass("active")) {
+    $(".bitmap").each(function(){
+        for (var i = 1; i < screenCount; i++) {
+            $(this).removeClass("b" + i);           
+        }
+    });    
+    if ($("button.ink").hasClass("active")) {
         $("button.ink").removeClass("active");
-
     };
     doneArray = [];
     
